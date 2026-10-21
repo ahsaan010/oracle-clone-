@@ -1,0 +1,648 @@
+/* =====================================================
+   Reset & tokens (merged: the 4 files each had their own)
+   ===================================================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --oracle-red: #c74634;
+  --top-bar: #312d2a;
+  --text: #161513;
+  --border: #d6d3d0;
+  --divider: #d6d3d0;          /* was undefined in the footer */
+  --strip: #f1efed;
+  --page-bg: #f1efed;
+  --card-bg: #f1efed;
+  --icon-bg: #6b7a7a;
+  --dark: #312d2a;
+
+  --container: 1600px;
+  --panel-height: 800px;
+  --radius: 16px;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: var(--text);
+  background: var(--page-bg);
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+/* =====================================================
+   Header
+   ===================================================== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  min-height: 88px;
+  padding: 0 64px;
+  border-top: 3px solid var(--top-bar);
+  border-bottom: 1px solid var(--border);
+  background-color: #fff;
+}
+
+.header__left,
+.header__right {
+  display: flex;
+  align-items: center;
+}
+
+.header__left { gap: 28px; }
+.header__right { gap: 14px; flex-shrink: 0; }
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.icon-btn:focus-visible,
+.card:focus-visible {
+  outline: 2px solid var(--oracle-red);
+  outline-offset: 2px;
+}
+
+.logo {
+  color: var(--oracle-red);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", Arial, sans-serif;
+}
+
+/* ===== Search ===== */
+.search {
+  flex: 1;
+  min-width: 0;                /* lets the search shrink instead of overflowing */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 18px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.search:focus-within {
+  border-color: var(--text);
+}
+
+.search__icon { flex-shrink: 0; }
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  font-size: 16px;             /* 16px stops iOS zooming on focus */
+  font-family: inherit;
+  color: var(--text);
+  background: transparent;
+}
+
+.search input::placeholder {
+  color: #5f5b57;
+}
+
+.flag {
+  width: 26px;
+  height: auto;
+  display: block;
+}
+
+/* =====================================================
+   Products
+   ===================================================== */
+.products {
+  display: flex;
+  justify-content: center;
+  gap: 245px;
+  padding: 36px 24px 32px;
+  background-color: #fff;
+}
+
+.group__title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 300;
+  color: #4a4642;
+  margin-bottom: 20px;
+}
+
+.cards {
+  display: flex;
+  gap: 32px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 119px;
+  height: 119px;
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text);
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid #e4e1de;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  transition: box-shadow 0.15s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== Bottom grey strip ===== */
+.bottom-strip {
+  height: 22px;
+  background: var(--strip);
+  border-top: 1px solid var(--border);
+}
+
+/* =====================================================
+   OCI section
+   ===================================================== */
+.oci {
+  padding: 18px 24px;
+  background: var(--page-bg);
+}
+
+.oci__panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: var(--container);
+  min-height: var(--panel-height);
+  margin: 0 auto;
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.oci__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px;
+  min-width: 0;
+}
+
+.oci__title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 48px;
+}
+
+.oci__text {
+  max-width: 690px;
+}
+
+.oci__text p {
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
+
+.oci__label {
+  font-weight: 600;
+}
+
+/* ===== Buttons (scoped: the two sections had conflicting .btn rules) ===== */
+.btn {
+  display: inline-block;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  background: var(--dark);
+  border-radius: 4px;
+  transition: background 0.15s ease;
+}
+
+.oci .btn {
+  align-self: flex-start;
+  margin-top: 32px;
+}
+
+.netsuite .btn {
+  margin-top: 28px;
+  padding: 12px 18px;
+}
+
+.btn:hover {
+  background: #000;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--oracle-red);
+  outline-offset: 3px;
+}
+
+/* ===== Right: media ===== */
+.oci__media {
+  position: relative;
+  background: #b5654a;
+  min-height: 320px;
+}
+
+.oci__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.caption {
+  position: absolute;
+  left: 32px;
+  right: 32px;
+  bottom: 32px;
+  padding: 24px 24px 22px;
+  background: var(--page-bg);
+  border-radius: 20px;
+}
+
+.caption__title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.caption__text {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* =====================================================
+   NetSuite section
+   ===================================================== */
+.netsuite {
+  padding: 18px 24px;
+  background-color: var(--page-bg);
+}
+
+.netsuite__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: var(--container);
+  min-height: var(--panel-height);
+  margin: 0 auto;
+  padding: 48px 64px;
+  background: #fff;
+  border-radius: var(--radius);
+}
+
+.netsuite__title {
+  margin-left: 52%;
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 48px;
+}
+
+.netsuite__body {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* ===== Left: info card ===== */
+.info-card {
+  padding: 40px 40px 48px;
+  background: var(--card-bg);
+  border-radius: 12px;
+}
+
+.info-card__title {
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.info-card__sub {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 40px;
+}
+
+.stats {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.stats__item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.stats__icon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: #fff;
+  background: var(--icon-bg);
+  border-radius: 50%;
+}
+
+.stats__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* ===== Right: features ===== */
+.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  padding-top: 8px;
+}
+
+.features h3 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  margin-top: 18px;
+}
+
+.features h3:first-child,
+.features h3 + h3 {
+  margin-top: 0;
+}
+
+.features p {
+  font-size: 18px;
+  line-height: 28px;
+  margin-top: 4px;
+}
+
+/* =====================================================
+   Footer
+   ===================================================== */
+.footer {
+  background: #fff;
+}
+
+.footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 16px 60px;
+  max-width: calc(var(--container) + 48px);
+  min-height: 106px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.footer__links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.footer__copy {
+  color: #3d3935;
+  position: relative;
+  top: -2px;
+}
+
+.footer__divider {
+  width: 1px;
+  height: 16px;
+  margin: 0 0 0 -1px;
+  background: var(--divider);
+}
+
+.footer__links a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.footer__links a:hover {
+  text-decoration: underline;
+}
+
+.slash {
+  display: inline-block;
+  margin: 0 5px;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1;
+  vertical-align: -1px;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  list-style: none;
+}
+
+.social a {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  color: var(--text);
+}
+
+.social svg {
+  width: 100%;
+  height: 100%;
+}
+
+.social a:hover {
+  color: var(--oracle-red);
+}
+
+.footer a:focus-visible {
+  outline: 2px solid var(--oracle-red);
+  outline-offset: 3px;
+}
+
+/* =====================================================
+   RESPONSIVE  (desktop-first, widest to narrowest)
+   ===================================================== */
+
+/* ----- Large laptops ----- */
+@media (max-width: 1500px) {
+  .products { gap: 80px; }
+}
+
+/* ----- Small laptops / tablets landscape ----- */
+@media (max-width: 1100px) {
+  .header { padding: 0 24px; gap: 16px; }
+  .header__left { gap: 16px; }
+
+  .products {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .netsuite__panel { min-height: 0; padding: 40px 32px; }
+  .netsuite__title {
+    margin-left: 0;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 32px;
+  }
+  .netsuite__body { grid-template-columns: 1fr; gap: 32px; }
+  .info-card__title { font-size: 40px; }
+
+  .footer__inner { gap: 20px 40px; }
+}
+
+/* ----- Tablets portrait ----- */
+@media (max-width: 900px) {
+  .oci { padding: 12px; }
+  .netsuite { padding: 12px; }
+
+  .oci__panel {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .oci__content { padding: 40px 24px; }
+  .oci__title { font-size: 32px; margin-bottom: 32px; }
+
+  .oci__media { min-height: 420px; }
+  .caption { left: 16px; right: 16px; bottom: 16px; }
+
+  .footer__inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+  .footer__links { justify-content: center; }
+  .footer__divider { display: none; }
+  .social { justify-content: center; }
+}
+
+/* ----- Phones ----- */
+@media (max-width: 600px) {
+  /* Header: logo + icons on row 1, search full-width on row 2 */
+  .header {
+    flex-wrap: wrap;
+    padding: 10px 16px 14px;
+    gap: 10px 12px;
+  }
+  .header__left { gap: 8px; }
+  .logo { font-size: 24px; letter-spacing: 1px; }
+  .header__right { gap: 8px; margin-left: auto; }
+  .header__right .icon-btn:first-child { display: none; }
+  .search {
+    order: 3;
+    flex: 1 1 100%;
+    height: 44px;
+    padding: 0 14px;
+  }
+
+  /* Products */
+  .products { padding: 28px 16px 24px; gap: 32px; }
+  .group { width: 100%; }
+  .group__title { font-size: 26px; margin-bottom: 16px; }
+  .cards {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+  .card {
+    width: calc(50% - 8px);
+    max-width: 150px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  /* OCI */
+  .oci__content { padding: 32px 20px; }
+  .oci__title { font-size: 28px; margin-bottom: 24px; }
+  .oci__text p { font-size: 16px; line-height: 24px; }
+  .oci .btn { align-self: stretch; text-align: center; margin-top: 24px; }
+  .oci__media { min-height: 380px; }
+  .caption { padding: 18px 16px; border-radius: 16px; }
+  .caption__title { font-size: 18px; }
+  .caption__text { font-size: 15px; }
+
+  /* NetSuite */
+  .netsuite__panel { padding: 24px 16px; border-radius: 12px; }
+  .netsuite__title { font-size: 28px; margin-bottom: 24px; }
+  .info-card { padding: 24px 16px 28px; }
+  .info-card__title { font-size: 30px; }
+  .info-card__sub { font-size: 16px; line-height: 24px; margin-bottom: 28px; }
+  .stats { gap: 20px; }
+  .stats__item { font-size: 16px; line-height: 24px; gap: 14px; }
+  .stats__icon { width: 44px; height: 44px; }
+  .features { grid-template-columns: 1fr; gap: 24px; padding-top: 0; }
+  .features h3,
+  .features p { font-size: 16px; line-height: 24px; }
+  .netsuite .btn { display: block; text-align: center; }
+
+  /* Footer */
+  .footer__inner { padding: 24px 16px; }
+  .footer__links { flex-direction: column; gap: 10px; }
+  .slash { display: none; }
+}
+
+/* ----- Very small phones ----- */
+@media (max-width: 380px) {
+  .logo { font-size: 20px; }
+  .oci__title,
+  .netsuite__title { font-size: 24px; }
+  .info-card__title { font-size: 26px; }
+  .oci__media { min-height: 460px; }   /* caption needs more room */
+}
+
+/* ----- Respect reduced motion ----- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
